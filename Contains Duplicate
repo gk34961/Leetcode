@@ -9,3 +9,18 @@ class Solution {
         return ret;
     }
 }
+
+2nd approach
+
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+        boolean ret=false;
+        Set<Integer> set=new HashSet<>();
+        for(int i=0;i<nums.length;i++){
+            if(set.contains(nums[i]))
+                ret=true;
+            set.add(nums[i]);
+        }
+        return ret;
+    }
+}
