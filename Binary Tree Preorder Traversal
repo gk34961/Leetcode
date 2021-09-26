@@ -25,3 +25,25 @@ class Solution {
         return list;
     }
 }
+
+Using Iteration
+
+class Solution {
+    List<Integer> list=new ArrayList<>();
+    public List<Integer> preorderTraversal(TreeNode root) {
+        if(root==null) return list;
+        Stack<TreeNode> nodes = new Stack<>(); 
+        nodes.push(root); 
+        
+        while (!nodes.isEmpty()) 
+        { 
+            TreeNode current = nodes.pop(); 
+            list.add(current.val);
+            if(current.right != null) 
+                nodes.push(current.right); 
+            if(current.left != null) 
+                nodes.push(current.left); 
+        }
+    return list;
+    }
+}
