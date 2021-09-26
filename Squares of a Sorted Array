@@ -1,0 +1,23 @@
+class Solution {
+    public int[] sortedSquares(int[] nums) {
+        int sqra[]=new int[nums.length];
+        
+        int start=0; 
+        int end =nums.length-1;
+        int pointer=end;
+        
+        while(start<=end){
+            if(Math.abs(nums[start])>Math.abs(nums[end])){
+                sqra[pointer]=nums[start]*nums[start];
+                start++;
+                pointer--;
+            }
+            else{
+                sqra[pointer]=nums[end]*nums[end];
+                end--;
+                pointer--;
+            }
+        }
+        return sqra;
+    }
+}
