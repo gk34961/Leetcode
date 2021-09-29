@@ -1,0 +1,11 @@
+class Solution {
+    public void reverseString(char[] s) {
+        int p_one=0;
+        int p_two=s.length-1;
+        while(p_one<p_two){
+            char c=s[p_one];
+            s[p_one++]=s[p_two];
+            s[p_two--]=c;
+        }
+    }
+}
