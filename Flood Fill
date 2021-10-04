@@ -6,6 +6,7 @@ class Solution {
         int color=image[sr][sc];
         if(color==newColor)
             return image;
+        //calling dfsAlgo
         dfsAlgo(image,sr,sc,newColor,color,row,col);
         return image;
     }
