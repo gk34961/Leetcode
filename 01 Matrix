@@ -1,0 +1,45 @@
+class Solution {
+    public int[][] updateMatrix(int[][] mat) {
+        int row= mat.length;
+        int col= mat[0].length;
+        Queue<int[]> queue =new LinkedList<>();
+        
+        for(int i=0;i<row;i++){
+            for(int j=0;j<col;j++){
+                if(mat[i][j]==0)
+                    queue.offer(new int[]{i,j});
+                else
+                    mat[i][j]=-1;
+            }
+        }
+        while(!queue.isEmpty()){
+            int[] temp=queue.poll();
+            int i=temp[0];
+            int j=temp[1];
+            
+            //check for neighbours
+            if(checkvalid(i+1,j,row,col) && mat[i+1][j]==-1 ){
+                queue.offer(new int[]{i+1,j});
+                mat[i+1][j]=mat[i][j]+1;
+            }
+            if(checkvalid(i-1,j,row,col) && mat[i-1][j]==-1 ){
+                queue.offer(new int[]{i-1,j});
+                mat[i-1][j]=mat[i][j]+1;
+            }
+            if(checkvalid(i,j+1,row,col) && mat[i][j+1]==-1 ){
+                queue.offer(new int[]{i,j+1});
+                mat[i][j+1]=mat[i][j]+1;
+                
+            }
+            if(checkvalid(i,j-1,row,col) && mat[i][j-1]==-1 ){
+                queue.offer(new int[]{i,j-1});
+                mat[i][j-1]=mat[i][j]+1;
+            }
+        }
+return mat;
+    }
+    boolean checkvalid(int i,int j,int row,int col){
+        if(i<0||j<0||i>=row||j>=col)return false;
+        return true;
+    }
+}
