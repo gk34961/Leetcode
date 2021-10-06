@@ -1,0 +1,20 @@
+public static int jumpingOnClouds(List<Integer> c) {
+    // Write your code here
+    int count=0;
+    int arry[]=new int[c.size()];
+    int i=0;
+    for(int val:c){
+        arry[i]=val;
+        i++;
+    }
+    
+    i=0;
+    while(i<c.size()-1){
+        if((i+2)<c.size() && arry[i+2]!=1)
+            i+=2;
+        else
+            i+=1;
+        count++;
+    }
+      return count;
+    }
