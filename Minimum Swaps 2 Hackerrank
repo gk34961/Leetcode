@@ -1,0 +1,27 @@
+static int minimumSwaps(int[] arr) {
+        int temp[]=new int[arr.length];
+        Map<Integer,Integer> map=new HashMap<>();
+        int count=0;
+        
+        for(int i=0;i<arr.length;i++){
+            map.put(arr[i],i);
+            temp[i]=arr[i];
+        }
+        Arrays.sort(temp);
+        
+        for(int i=0;i<arr.length;i++){
+           if(arr[i]!=(i+1)){
+               count++;
+               swap(i,map.get(temp[i]),arr,map);
+           } 
+        }
+        return count;
+    }
+    
+   static void swap(int i,int j,int[] arr,Map<Integer,Integer> map){
+        map.put(arr[i],j);
+        map.put(arr[j],i);
+        int temp=arr[i];
+        arr[i]=arr[j];
+        arr[j]=temp;
+    }
