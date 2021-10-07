@@ -1,0 +1,19 @@
+class Solution {
+    public List<List<Integer>> combine(int n, int k) {
+        List<List<Integer>> subset=new ArrayList<>();
+        
+        backtrack(1,n,k,new ArrayList(),subset);
+        return subset;
+    }
+    private void backtrack(int start,int j,int k,List<Integer> current,List<List<Integer>> subset){
+        if(current.size()==k) {
+            subset.add(new ArrayList(current));
+            return; }
+        
+        for(int i=start;i<=j;i++){
+            current.add(i);
+            backtrack(i+1,j,k,current,subset);
+            current.remove(current.size()-1);
+        }
+    }
+}
