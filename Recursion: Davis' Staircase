@@ -1,0 +1,16 @@
+public static int stepPerms(int n) {
+    // Write your code here
+    int stor[]=new int[n];
+    if(n==1)
+        return 1;
+    if(n==2)
+        return 2;
+    if(n==3)
+        return 4;
+    stor[0]=1;
+    stor[1]=2;
+    stor[2]=4;
+        for(int i=3;i<n;i++)
+            stor[i]=stor[i-1]+stor[i-2]+stor[i-3];
+        return stor[n-1];
+    }
