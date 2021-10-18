@@ -1,0 +1,14 @@
+class Solution {
+    private Map<String,Integer> map=new HashMap<>();
+    public int minimumTotal(List<List<Integer>> triangle) {
+       return sumtotal(triangle,0,0);
+    }
+    int sumtotal(List<List<Integer>> triangle, int row,int col){
+        if(row>=triangle.size()) return 0;
+        String key=row+"|"+col;
+        if(!map.containsKey(key))
+map.put(key,Math.min(sumtotal(triangle,row+1,col),sumtotal(triangle,row+1,col+1))+triangle.get(row).get(col));
+        
+        return map.get(key);
+    }
+}
