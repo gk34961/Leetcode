@@ -42,3 +42,31 @@ class MyQueue {
  * int param_3 = obj.peek();
  * boolean param_4 = obj.empty();
  */
+ 
+ // Another approach
+ 
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+class MyQueue<T>{
+    Stack<Integer> s1;
+    Stack<Integer> s2;
+    
+    MyQueue(){
+        s1=new Stack();
+        s2=new Stack();
+    }
+    
+    void enqueue(int val){s1.push(val);}
+    void reverse(){while(!s1.isEmpty()){s2.push(s1.pop());}}
+    int dequeue(){
+        if(s2.isEmpty()) reverse();
+        return s2.pop();
+    }
+    int peek(){
+        if(s2.isEmpty()) reverse();
+        return s2.peek();
+    }
+}
