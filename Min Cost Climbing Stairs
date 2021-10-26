@@ -12,7 +12,7 @@ class Solution {
 }
 
 ========================================================
-Modified Solution
+Modified Solution correct one
 class Solution {
     public int minCostClimbingStairs(int[] cost) {
         int n=cost.length;
