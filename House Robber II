@@ -1,0 +1,24 @@
+class Solution {
+     public int rob(int[] nums) {
+        if(nums.length==1) return nums[0];
+        if(nums.length==2) return Math.max(nums[0],nums[1]);
+        int n=nums.length;
+        return Math.max(func(nums,0,n-2),func(nums,1,n-1));
+    }
+    
+    private int func(int[] nums,int start,int end){ 
+    
+        int dp1=nums[start];
+        int dp2=Math.max(nums[start],nums[start+1]);
+        int max=dp2;
+        
+        for(int i=start+2;i<=end;i++){
+            max=Math.max(nums[i]+dp1,dp2);
+            dp1=dp2;
+            dp2=max;
+        }
+        return max;
+
+    }
+   
+}
