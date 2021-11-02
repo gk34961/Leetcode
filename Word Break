@@ -1,3 +1,4 @@
+//This solution is not working
 class Solution {
     Map<String,Boolean> map=new HashMap<>();
     public boolean wordBreak(String s, List<String> wordDict) {
