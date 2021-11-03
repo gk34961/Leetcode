@@ -1,0 +1,33 @@
+class Solution {
+    public int trap(int[] height) {
+        int n=height.length;
+        
+        int mleft=height[0];
+        int mright=height[n-1];
+        int left=1;
+        int right=n-2;
+            
+        int load=0;
+        
+        while(left<=right){
+            if(mleft<mright){
+               if(height[left]<=mleft){
+                   load=load+mleft-height[left];
+               }
+                else
+                    mleft=height[left];
+                left=left+1;
+            }
+            else{
+                if(height[right]<=mright){
+                   load=load+mright-height[right];
+               }
+                else
+                    mright=height[right];
+                right=right-1;
+            }
+            
+        }
+        return load;
+    }
+}
