@@ -1,0 +1,25 @@
+class Solution {
+    public int nthUglyNumber(int n) {
+        int[] list=new int[n];
+        list[0]=1;
+        
+        int p1=0;
+        int p2=0;
+        int p3=0;
+        
+        for(int i=1;i<n;i++){
+            int twomultiple =list[p1]*2;
+            int threemultiple =list[p2]*3;
+            int fivemultiple =list[p3]*5;
+            
+        list[i]=Math.min(twomultiple,Math.min(threemultiple,fivemultiple));
+            System.out.println(list[i]);
+            if(list[i]==twomultiple) p1++;
+            if(list[i]==threemultiple) p2++;
+            if(list[i]==fivemultiple) p3++;
+            
+        }
+         
+        return list[n-1];
+    }
+}
