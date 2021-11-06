@@ -16,3 +16,15 @@ class Solution {
         return ret.get(rowIndex);
     }
 }
+
+
+// Not aware still
+
+List<Integer> row = new ArrayList<Integer>();
+        rowIndex++;
+        long num = 1;
+        for (int i = 1; i <= rowIndex; i++) { 
+            row.add((int)num); 
+            num = num * (rowIndex - i) / i;            
+        }
+        return row;
