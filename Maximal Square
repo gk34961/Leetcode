@@ -1,0 +1,18 @@
+class Solution {
+    public int maximalSquare(char[][] matrix) {
+        int r=matrix.length;
+        int c=matrix[0].length;
+        int result[][]=new int[r+1][c+1];
+        
+        int res=0;
+        for(int i=1;i<=r;i++){
+            for(int j=1;j<=c;j++){
+                if(matrix[i-1][j-1]=='1'){
+                result[i][j]=1+Math.min(result[i-1][j],Math.min(result[i][j-1],result[i-1][j-1]));
+                if(res<result[i][j]) res=result[i][j];
+                }
+            }
+        }
+        return res*res;
+    }
+}
