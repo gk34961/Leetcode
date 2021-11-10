@@ -24,3 +24,26 @@ class Solution {
         return list;
     }
 } 
+
+//Using Iteration
+class Solution {
+    List<Integer> list=new ArrayList<>();
+    public List<Integer> inorderTraversal(TreeNode root) {
+       if(root==null) return list;
+        Stack<TreeNode> nodes = new Stack<>(); 
+        TreeNode temp=root;
+        
+        while (!nodes.isEmpty()||temp!=null) 
+        { 
+             if(temp!=null){
+                 nodes.push(temp);
+                 temp=temp.left;
+             }else{
+                 temp=nodes.pop();
+                 list.add(temp.val);
+                 temp=temp.right;
+             }
+        }
+    return list;
+    }
+} 
