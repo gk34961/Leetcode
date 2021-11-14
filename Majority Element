@@ -14,3 +14,24 @@ class Solution {
         return 0;
     }
 }
+
+//
+class Solution {
+    public int majorityElement(int[] nums) {
+        Arrays.sort(nums);
+    return nums[nums.length/2];
+    }
+}
+//
+class Solution {
+    public int majorityElement(int[] nums) {
+        int person=0;
+        int count=0;
+        for(int num:nums){
+            if(count==0) person=num;
+            if(person==num) count++;
+            else count--;       
+        }
+        return person;
+    }
+}
