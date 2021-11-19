@@ -24,3 +24,23 @@ class Solution {
         }
     }
 }
+
+//
+class Solution {
+    public void sortColors(int[] nums) {
+        
+        int l=0,m=0,h=nums.length-1;
+        while(m<=h){
+            int temp=nums[m];
+            if(temp==0){
+                nums[l++]=nums[m];
+                nums[m++]=temp;
+                }
+            else if(temp==1) m++;
+            else if(temp==2){
+                nums[m]=nums[h];
+                nums[h--]=temp;
+           }
+        }
+    }
+}
