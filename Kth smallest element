@@ -1,0 +1,13 @@
+class Solution{
+    public static int kthSmallest(int[] nums, int l, int r, int k) 
+    { 
+        //Your code here
+     PriorityQueue<Integer> pQ = new PriorityQueue<Integer>(Collections.reverseOrder());
+        for(int a:nums){
+            pQ.add(a);
+            if(pQ.size()>k)
+                pQ.poll();
+        }
+        return pQ.peek();
+    } 
+}
