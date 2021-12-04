@@ -1,0 +1,30 @@
+class Solution
+{
+    //Function to return a list containing the bottom view of the given tree.
+    public ArrayList <Integer> bottomView(Node root)
+    {
+        // Code here
+        Queue<Node> q=new LinkedList<>();
+        Queue<Integer> list=new LinkedList<>();
+        
+        Map<Integer,Integer> map=new TreeMap<>();
+        q.add(root);
+        list.add(0);
+        
+        while(!q.isEmpty()){
+            Node temp=q.poll();
+            int i=list.poll();
+            
+            map.put(i,temp.data);
+            
+            if(temp.left!=null){
+                q.add(temp.left);list.add(i-1);
+            }
+            if(temp.right!=null){
+                q.add(temp.right);list.add(i+1);
+            }
+        }
+        ArrayList<Integer> ret=new ArrayList<>(map.values());
+        return ret;
+    }
+}
