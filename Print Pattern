@@ -1,0 +1,15 @@
+class Solution{
+    static List<Integer> pattern(int N){
+        ArrayList<Integer> list=new ArrayList<>();
+        findPattern(N,list);
+    return list;
+    }
+    static void findPattern(int N,ArrayList<Integer> list){
+        list.add(N);
+        if(N<=0) 
+            return;
+        findPattern(N-5,list);
+        
+        list.add(N);
+    }
+}
