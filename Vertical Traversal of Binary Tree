@@ -1,0 +1,35 @@
+class Solution
+{
+    //Function to find the vertical order traversal of Binary Tree.
+    static ArrayList <Integer> verticalOrder(Node root)
+    {
+        // add your code here
+        Queue<Node> q=new LinkedList<>();
+        Map<Integer, ArrayList<Integer>> map = new TreeMap<>();
+        Queue<Integer> loc=new LinkedList<>();
+        loc.add(0);
+        q.add(root);
+    
+        while(!q.isEmpty()){
+            Node temp=q.poll();
+            int val=loc.poll();
+            
+            ArrayList<Integer> list=map.get(val);
+            if(list==null){
+                list=new ArrayList<>();
+                list.add(temp.data);}
+            else
+                list.add(temp.data);
+            map.put(val,list);
+            
+            if(temp.left!=null) {q.add(temp.left); loc.add(val-1);}
+            if(temp.right!=null) {q.add(temp.right); loc.add(val+1);}
+        }
+        ArrayList<Integer> res=new ArrayList<>();
+        for(Map.Entry<Integer,ArrayList<Integer>> e:map.entrySet()) {
+            ArrayList<Integer> arr=e.getValue();
+            res.addAll(arr);
+        }
+        return res;
+    }
+}
