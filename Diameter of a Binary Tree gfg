@@ -1,0 +1,20 @@
+class Solution {
+    // Function to return the diameter of a Binary Tree.
+    int sum=0;
+    int diameter(Node root) {
+        int val=diamete(root);
+        return sum;
+    }
+    int diamete(Node root){
+        int left=0;
+        int right=0;
+        if(root==null) return 0;
+        
+        left=diamete(root.left);
+        right=diamete(root.right);
+        int val=1+left+right;
+        
+        if(val>sum) sum=val;
+        return 1+Math.max(left,right);
+    }
+}
