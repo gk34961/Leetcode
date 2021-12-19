@@ -1,0 +1,32 @@
+class Solution 
+{
+    public static int maxMeetings(int start[], int end[], int n)
+    {
+       ArrayList<Pair>al=new ArrayList<>();
+		for(int i=0;i<n;i++) 
+			al.add(new Pair(start[i],end[i]));
+			
+			Collections.sort(al,new MySort());
+			int res=1;
+			int prev=0;
+			for(int count=1;count<n;count++)
+				if(al.get(count).start>al.get(prev).end){
+					res++;
+					prev=count;
+				}
+		return res;
+	}
+}
+
+class Pair{
+	int start,end;
+	Pair(int start,int end){
+		this.start=start;
+		this.end=end;}
+}
+
+class MySort implements Comparator<Pair>{
+	public int compare(Pair a,Pair b){
+		return a.end-b.end;
+	}
+}
