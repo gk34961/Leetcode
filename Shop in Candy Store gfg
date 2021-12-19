@@ -1,0 +1,20 @@
+class Solution{
+    static ArrayList<Integer> candyStore(int candies[],int N,int K){
+        // code here
+        Arrays.sort(candies);
+        int max=0,min=0;
+        int i=0;
+        int count=0;
+        while(count<N){
+            min+=candies[i];
+            max+=candies[N-1-i];
+            i++;
+            count+=(K+1);
+        }
+        
+        ArrayList<Integer> list = new ArrayList<>();
+        list.add(min);
+        list.add(max);
+        return list;
+    }
+}
