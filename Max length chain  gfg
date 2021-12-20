@@ -1,0 +1,30 @@
+class CompareByFirst implements Comparator<Pair>
+{
+   public int compare(Pair a, Pair b)
+    {
+        return a.y - b.y;
+    }
+}
+
+class GfG
+{
+    int maxChainLength(Pair arr[], int n)
+    {
+       // your code here
+       int count=0;
+       ArrayList<Pair> list=new ArrayList<>();
+       for(int i=0;i<n;i++) list.add(arr[i]);
+       
+       Collections.sort(list,new CompareByFirst());
+       
+       int res=1;
+	   int prev=0;
+       for(int i=1;i<n;i++){
+           if(list.get(i).x>list.get(prev).y){
+					res++;
+					prev=i;
+				}
+       }
+       return res;
+    }
+}
