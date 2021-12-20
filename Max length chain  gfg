@@ -21,9 +21,9 @@ class GfG
 	   int prev=0;
        for(int i=1;i<n;i++){
            if(list.get(i).x>list.get(prev).y){
-					res++;
-					prev=i;
-				}
+		res++;
+		prev=i;
+	   }
        }
        return res;
     }
