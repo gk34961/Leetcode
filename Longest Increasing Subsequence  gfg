@@ -1,0 +1,26 @@
+class Solution 
+{
+    //Function to find length of longest increasing subsequence.
+    static int longestSubsequence(int size, int a[])
+    {
+        // code here
+        int result[]=new int[size];
+        for(int i=0;i<size;i++) result[i]=1;
+        
+        int i=0;
+        int j=1;
+        int max=0;
+        while(j<size){
+            if(a[i]<a[j] && i<j) {
+                result[j]=Math.max(result[i]+1,result[j]);
+                max=Math.max(max,result[j]);
+                i++;
+            }else if(i==j){
+                j++;//1,2,2,
+                i=0;
+            }else
+            i++;
+        }
+       return max; 
+    }
+} 
