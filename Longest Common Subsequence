@@ -14,3 +14,31 @@ class Solution {
         return result[r][c];
     } 
 }
+
+=================================================================================================================================================================================
+GFG Using recursion+memorization
+=================================================================================================================================================================================
+
+class Solution
+{
+    
+    static int lcs(int x, int y, String s1, String s2)
+    {
+        int t[][]=new int[x+1][y+1];
+        for(int i=0;i<=x;i++){
+            for(int j=0;j<=y;j++) t[i][j]=-1;
+        }
+
+        return lcsc(x,y,s1,s2,t);
+    }
+    static int lcsc(int x, int y, String s1, String s2,int t[][])
+    {
+        if(x==0||y==0) return 0;
+        if(t[x][y]!=-1) return t[x][y];
+        if(s1.charAt(x-1)==s2.charAt(y-1))
+            return t[x][y]=1+lcsc(x-1,y-1,s1,s2,t);
+        else{
+            return t[x][y]=Math.max(lcsc(x,y-1,s1,s2,t),lcsc(x-1,y,s1,s2,t));
+        }
+    }
+}
