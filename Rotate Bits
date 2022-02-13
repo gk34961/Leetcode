@@ -1,0 +1,12 @@
+class Solution
+{
+    
+    ArrayList<Integer> rotate(int N, int D)
+    {
+        D%=16;
+        ArrayList<Integer> arr = new ArrayList<>();
+        arr.add(((N<<D)&(0xffff))|((N>>(16-D))&(0xffff)));
+        arr.add(((N>>D)&(0xffff))|((N<<(16-D))&(0xffff)));
+        return arr;
+    }
+}
