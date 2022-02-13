@@ -1,0 +1,7 @@
+class Solution {
+    static int toggleBits(int N , int L , int R) {
+        
+        int num = ((1 << R) - 1) ^ ((1 << (L - 1)) - 1);
+        return (N ^ num);
+    }
+};
