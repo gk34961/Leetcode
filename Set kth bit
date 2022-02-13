@@ -1,0 +1,7 @@
+class Solution{
+    static int setKthBit(int N,int K){
+        int num=1;
+        num=num<<K;
+        return num|N; 
+    }
+}
