@@ -1,0 +1,10 @@
+public static int maxConsecutiveOnes(int N) {
+        
+        int max=0;
+        
+        while(N>0){
+            N=N&(N>>1);
+            max++;
+        }
+        return max;
+    }
