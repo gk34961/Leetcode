@@ -1,0 +1,89 @@
+C++ Solution
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+class Solution 
+{
+    public:
+    //Function to find a solved Sudoku. 
+    bool SolveSudoku(int grid[N][N])  
+    { 
+       for(int i=0;i<9;i++){
+           for(int j=0;j<9;j++){
+               if(grid[i][j]==0){
+                   
+                   for(int n=1;n<=9;n++){
+                       if(isValid(i , j , n , grid)){
+                           
+                           grid[i][j]=n;
+                           if(SolveSudoku(grid)) return true;
+                           else grid[i][j]=0;//REVERT CHANGES
+                       }
+                   }
+                   return false;//No VALID NUMBER
+               }
+           }
+       }
+       return true;//ALL GAPS ARE FILLED
+    }
+    
+    bool isValid(int row , int col , int num , int grid[N][N]){
+       
+       for(int i=0;i<9;i++){
+           
+           if(grid[row][i]==num or grid[i][col]==num) return false;
+           if(grid[3*(row/3)+i/3][3*(col/3)+i%3]==num) return false;
+       }
+       return true;
+   }
+    //Function to print grids of the Sudoku.
+    void printGrid (int grid[N][N]) 
+   {
+       // Your code here 
+       for(int i=0;i<9;i++){
+           for(int j=0;j<9;j++) cout<<grid[i][j]<<" ";
+       }
+   }
+};
+===============================================================================================================================================================================
+Java Solution
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+class Solution
+{
+    //Function to find a solved Sudoku. 
+    static boolean SolveSudoku(int grid[][])
+    {
+        for(int i=0;i<9;i++){
+            for(int j=0;j<9;j++){
+                
+                if(grid[i][j]==0){
+                    
+                    for(int c=1;c<=9;c++){
+                        if(isValid(i,j,c,grid)){
+                            grid[i][j]=c;
+                        if(SolveSudoku(grid)) return true;
+                        else
+                            grid[i][j]=0;
+                        }
+                    }
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    static boolean isValid(int i,int j,int c,int grid[][]){
+        for(int index=0;index<9;index++){
+            if(grid[i][index]==c||grid[index][j]==c) return false;
+            if(grid[3*(i/3)+i/3][3*(j/3)+i%3]==c) return false;
+        }
+        return true;
+    }
+    static void printGrid (int grid[][])
+    {
+       for(int i=0;i<9;i++){
+           for(int j=0;j<9;j++){
+               System.out.print(grid[i][j]+" ");
+           }
+           //System.out.println();
+       }
+    }
+}
