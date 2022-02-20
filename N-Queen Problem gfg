@@ -1,0 +1,65 @@
+class Solution{
+    static ArrayList<ArrayList<Integer>> nQueen(int n) {
+        
+        int board[][] = new int[n][n];
+        ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+        
+        results(board,res,0);
+        
+        return res;
+    }
+    
+    static void results(int board[][],ArrayList<ArrayList<Integer>> res,int col)
+    {
+        if(col == board.length)
+        {
+            ArrayList<Integer> list = new ArrayList<>();
+            
+            for(int j=0;j<board.length;j++)
+                for(int i=0;i<board.length;i++)
+                    if(board[i][j]==1)
+                        list.add(i+1);
+            
+            res.add(new ArrayList<>(list));
+            
+            return;
+            
+        }
+        
+        for(int row=0;row<board.length;row++)
+        {
+            if(isValid(row,col,board))
+            {
+                board[row][col]=1;
+                results(board,res,col+1);
+                board[row][col]=0; //backtracking step
+            }
+            
+        }
+    }
+    static boolean isValid(int row,int col, int board[][]){
+        int duprow = row;
+        int dupcol = col; 
+        while(row >= 0 && col >= 0) {
+            if(board[row][col] == 1) return false; 
+            row--;
+            col--; 
+        }
+        
+        row = duprow; 
+        col = dupcol; 
+        while(col >= 0) {
+            if(board[row][col] == 1) return false; 
+            col--; 
+        }
+        
+        row = duprow; 
+        col = dupcol; 
+        while(col >= 0 && row < board.length) {
+            if(board[row][col] == 1) return false; 
+            col--;
+            row++; 
+        }
+        return true; 
+    }
+}
