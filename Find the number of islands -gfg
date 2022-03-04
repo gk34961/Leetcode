@@ -1,0 +1,32 @@
+class Solution {
+    // Function to find the number of islands.
+    public int numIslands(char[][] grid) {
+        // Code here
+        boolean b[][]=new boolean[grid.length][grid[0].length];
+        int count=0;
+        for(int i=0;i<grid.length;i++){
+            for(int j=0;j<grid[0].length;j++){
+                if(grid[i][j]=='1' && !b[i][j]){
+                    dfs(i,j,grid,b);
+                    ++count;
+                }
+            }
+        }
+        //System.out.println(count);
+        return count;
+    }
+    
+    void dfs(int i,int j,char[][] grid,boolean b[][]){
+        if(i<0||j<0||i>=grid.length||j>=grid[0].length||b[i][j]==true||grid[i][j]=='0') return;
+        b[i][j]=true;
+        
+        dfs(i-1,j,grid,b);
+        dfs(i+1,j,grid,b);
+        dfs(i,j+1,grid,b);
+        dfs(i,j-1,grid,b);
+        dfs(i-1,j+1,grid,b);
+        dfs(i-1,j-1,grid,b);
+        dfs(i+1,j+1,grid,b);
+        dfs(i+1,j-1,grid,b); 
+    }
+}
