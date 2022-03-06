@@ -1,0 +1,51 @@
+class Solution
+{
+    //Function to find number of strongly connected components in the graph.
+    public int kosaraju(int v, ArrayList<ArrayList<Integer>> adj)
+    {
+        //topologica sort ->STEP-1
+        boolean visited[]=new boolean[v];
+        Stack<Integer> s=new Stack<>();
+        for(int i=0;i<v;i++){
+            if(!visited[i])
+                topologic(i,visited,adj,s);
+        }
+        
+      //Transpose ->step2
+       ArrayList<ArrayList<Integer>> g2=new ArrayList<>();
+       for(int i=0;i<v;i++)
+       g2.add(new ArrayList<>());
+       
+       for(int i=0;i<v;i++){
+           for(int n:adj.get(i))
+                g2.get(n).add(i);
+       }
+       
+       int c=0;
+       boolean vis[]=new boolean[v];
+       while(s.size()>0){
+           int r=s.pop();
+           if(vis[r]==false){
+               dfs2(r,g2,vis);
+               c++;
+           }
+       }
+       return c;
+    
+    }
+    void topologic(int node,boolean b[],ArrayList<ArrayList<Integer>> adj,Stack<Integer> s){
+        b[node]=true;
+        for(int i:adj.get(node)){
+            if(!b[i])
+                topologic(i,b,adj,s);
+        }
+        s.push(node);
+    }
+    void dfs2(int i,ArrayList<ArrayList<Integer>> g,boolean vis[]){
+       vis[i]=true;
+       for(int n:g.get(i)){
+           if(vis[n]==false)
+               dfs2(n,g,vis);
+       }
+   }
+}
