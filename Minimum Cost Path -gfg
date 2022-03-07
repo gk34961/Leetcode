@@ -1,0 +1,54 @@
+class Pair implements Comparable<Pair> {
+	int x, y, cost;
+	Pair(int x, int y, int cost) {
+		this.x = x;
+		this.y = y;
+		this.cost = cost;
+	}
+	public int compareTo(Pair p) {
+		return cost - p.cost;
+	}
+}
+
+public class Solution {
+
+	private  boolean inLimits(int x, int y, int n) {
+		return (x >= 0 && y >= 0 && x < n && y < n);
+	}
+
+	public  int minimumCostPath(int[][] grid) {
+		int n = grid.length;
+
+		PriorityQueue<Pair> pq = new PriorityQueue<>();
+
+		pq.add(new Pair(0, 0, grid[0][0]));
+
+		boolean visited[][] = new boolean[n][n];
+
+		int dx[] = { 1, 0, -1, 0 };
+		int dy[] = { 0, 1, 0, -1 };
+
+		while (!pq.isEmpty()) {
+			Pair p = pq.poll();
+
+			//visited[p.x][p.y] = true;
+
+			for (int i = 0; i < 4; i++) {
+				int x = p.x + dx[i];
+				int y = p.y + dy[i];
+
+				if (inLimits(x, y, n) && visited[x][y] == false) {
+					if (x == n - 1 && y == n - 1)
+						return p.cost + grid[x][y];
+					visited[x][y] = true;
+
+					pq.add(new Pair(x, y, p.cost + grid[x][y]));
+
+				}
+			}
+		}
+
+		return -1;
+
+	}
+}
