@@ -1,0 +1,57 @@
+class pair implements Comparable<pair>
+{
+   int row;
+   int col;
+   int count;
+   
+   pair(int r, int c, int ct)
+   {
+       this.row = r;
+       this.col = c;
+       this.count = ct;
+   }
+   
+   public int compareTo(pair p){
+   return count - p.count;
+   }
+   
+}
+
+class Solution {
+   static boolean check(int row, int col, int n, int m, int arr[][]){
+       if(row >= 0 && row < n && col >= 0 && col < m && arr[row][col] == 1) return true;
+       else return false;
+   }
+  
+   int shortestDistance(int N, int M, int arr[][], int X, int Y){
+       if(N == 0 || M == 0||arr[0][0] == 0) return -1;
+       
+       PriorityQueue<pair> pq = new PriorityQueue<pair>();
+       pq.offer(new pair(0, 0, 0));
+       
+       arr[0][0] = -1;
+       
+       int dx[] = { 1, 0, -1, 0};
+       int dy[] = { 0, 1, 0, -1};
+       
+       while(!pq.isEmpty())
+       {
+           pair p = pq.poll();
+           
+           if( p.row == X && p.col == Y) return p.count;
+           
+           for(int i = 0 ; i < 4 ; i++){
+           
+               int row = p.row + dx[i];
+               int col = p.col + dy[i];
+               
+               if(check(row, col, N, M, arr))
+               {
+                   arr[row][col] = -1;
+                   pq.offer(new pair(row, col, p.count+1));
+               }
+           }
+       }
+       return -1;
+   }
+};
