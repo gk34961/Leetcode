@@ -1,0 +1,46 @@
+class Solution{
+    class Position{
+            int v;
+            int dis;
+    }
+     int minThrow(int N, int arr[]){
+        // code here
+        int visited[]=new int[31];
+        for(int i=0;i<31;i++) visited[i]=-1;
+        for(int i=0;i<2*N;i+=2) visited[arr[i]-1]=arr[i+1];
+        
+        return bfs(visited,31);
+    }
+    int bfs(int visited[],int n){
+    
+        Queue<Position> q=new LinkedList<>();
+        int v[]=new int[31];
+        Position p=new Position();
+        p.v=0;
+        p.dis=0;
+        
+        q.add(p);
+        v[0]=1;
+        
+        while(!q.isEmpty()){
+            p=q.remove();
+            int node=p.v;
+            if(node==30) break;
+        
+            for(int i=node;i<=(node+6) && i<n;i++){
+                
+                if(v[i]==0){
+                    Position a = new Position();
+                    a.dis = (p.dis + 1);
+                    v[i] = 1;
+                    if(visited[i]!=-1)
+                        a.v=visited[i];
+                    else
+                        a.v=i;
+                    q.add(a);
+                }
+            }
+        }
+        return p.dis;
+    }
+}
