@@ -1,0 +1,26 @@
+class Solution
+{
+    //Function to return k largest elements from an array.
+    public static ArrayList<Integer> kLargest(int arr[], int n, int k)
+    {
+        // code here 
+        ArrayList<Integer> result=new ArrayList<>();
+        PriorityQueue<Integer> pQueue = new PriorityQueue<Integer>();
+        
+        for(int val:arr){
+            if(pQueue.size()<k)
+                pQueue.add(val);
+            else if(pQueue.peek()<val){
+                pQueue.poll();
+                pQueue.add(val);
+            }
+        }
+        
+        while(pQueue.size()>0){
+           result.add(pQueue.peek());
+           pQueue.remove();
+       }
+       Collections.reverse(result);
+        return result;
+    }
+}
