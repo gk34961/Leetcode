@@ -1,0 +1,32 @@
+class Solution
+{
+    static PriorityQueue<Integer> lpq = new PriorityQueue<>(Collections.reverseOrder());
+    static PriorityQueue<Integer> rpq = new PriorityQueue<>();
+    public static void insertHeap(int x)
+    {
+       if(!rpq.isEmpty()&&rpq.peek()<x)
+           rpq.add(x);
+       else
+           lpq.add(x);
+        balanceHeaps();
+    }
+  
+   public static void balanceHeaps()
+   {
+      if(lpq.size()-rpq.size()==2)
+          rpq.add(lpq.remove());
+      else if(rpq.size()-lpq.size()==2)
+          lpq.add(rpq.remove());
+   }
+ 
+   public static double getMedian()
+   {
+       if(rpq.size()==lpq.size())
+          return Double.valueOf((lpq.peek()+rpq.peek())/2);
+       else if(rpq.size()<lpq.size())
+          return Double.valueOf(lpq.peek());
+       else
+          return Double.valueOf(rpq.peek());
+   }
+    
+}
