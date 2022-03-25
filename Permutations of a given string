@@ -1,0 +1,24 @@
+class Solution {
+    void swap(int i,int j,char c[]){
+        char t=c[i];
+        c[i]=c[j];
+        c[j]=t;
+    }
+    public List<String> find_permutation(String S) {
+        // Code here
+        List<String> result=new ArrayList<>();
+        permutation(S.toCharArray(),result,0);
+        Collections.sort(result);
+        return result;
+    }
+    void permutation(char c[],List<String> result,int index){
+        
+        
+        for(int i=index;i<c.length;i++){
+            swap(i,index,c);
+            permutation(c,result,index+1);
+            swap(i,index,c);
+        }
+        if(index==c.length-1) {result.add(String.valueOf(c)); return;}
+    }
+}
