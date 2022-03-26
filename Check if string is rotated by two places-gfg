@@ -1,0 +1,13 @@
+class Solution
+{
+    public static boolean isRotated(String str1, String str2)
+    {
+        // Your code here
+        String temp1=str1.substring(2)+str1.substring(0,2);
+        //System.out.println(temp1);
+        String temp2=str1.substring(str1.length()-2)+str1.substring(0,str1.length()-2);
+        //System.out.println(temp2);
+        if(temp1.equalsIgnoreCase(str2)||temp2.equalsIgnoreCase(str2)) return true;
+        else return false;
+    }   
+}
