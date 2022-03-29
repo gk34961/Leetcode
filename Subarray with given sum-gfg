@@ -1,0 +1,26 @@
+class Solution
+{
+    //Function to find a continuous sub-array which adds up to a given number.
+    static ArrayList<Integer> subarraySum(int[] arr, int n, int s) 
+    {
+        // Your code here
+        int i=0;
+        int p=0;
+        int sum=0;
+        //Arrays.sort(arr);
+        ArrayList<Integer> list=new ArrayList<>();
+        
+        while(p<n){
+            sum+=arr[p++];
+            while(sum>s)
+                sum-=arr[i++];
+            if(sum==s){
+                list.add(i+1);
+                list.add(p);
+                return list;
+            }
+        }
+        list.add(-1);
+        return list;
+    }
+}
