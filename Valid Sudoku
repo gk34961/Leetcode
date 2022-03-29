@@ -13,4 +13,22 @@ class Solution {
     }
 }
                              
-                             
+=========================================================================================================================================================================
+class Solution{
+    static int isValid(int mat[][]){
+        // code here
+        
+        HashSet<String> set = new HashSet<>();
+        for(int i=0;i<9;i++){
+            for(int j=0;j<9;j++){
+                if(mat[i][j]!=0){
+                    if(!set.add(mat[i][j]+"r"+i)||
+                       !set.add(mat[i][j]+"c"+j)||
+                       !set.add(mat[i][j]+"b"+(i/3)+"_"+(j/3)))
+                       return 0;
+                }
+            }
+        }
+        return 1;
+    }
+}
