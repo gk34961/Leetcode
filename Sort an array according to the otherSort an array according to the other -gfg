@@ -1,0 +1,34 @@
+class Solution{
+    public static int[] sortA1ByA2(int A1[], int N, int A2[], int M)
+    {
+        //Your code here
+        Map<Integer,Integer> map=new TreeMap<>();
+        int temp[]=new int[N];
+        
+        for(int i=0;i<N;i++)
+            map.put(A1[i],map.getOrDefault(A1[i],0)+1);
+        
+        int index=0;
+        
+        for(int i=0;i<M;i++){
+            if(map.containsKey(A2[i])){
+                int frq=map.get(A2[i]);
+                while(frq-->0)
+                    temp[index++]=A2[i];
+                if(frq<=0)
+                    map.remove(A2[i]);
+            }
+        }
+       //System.out.println(map);
+       
+        for(Map.Entry<Integer,Integer> entry : map.entrySet()){
+            int key=entry.getKey();
+            int val=entry.getValue();
+                while(val-->0){
+                    temp[index++]=key;
+                }
+            }
+    return temp;
+    }
+}
+
