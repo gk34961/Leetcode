@@ -31,3 +31,24 @@ class Solution
 	    return d.longValue();
 	 }
 }
+
+class Solution
+{
+     long floorSqrt(long x)
+	 {
+	    if(x==1) return 1;
+	    long l=0;
+	    long r=x;
+	    
+	    long sqroot=1;
+	    while(l<=r){
+	        long mid=(l+r)/2;
+	        if(mid*mid>x)
+	            {r=mid-1;}
+	        else{
+	            l=mid+1;sqroot=mid;}
+	    }
+	 return sqroot;
+	 }
+}
+
