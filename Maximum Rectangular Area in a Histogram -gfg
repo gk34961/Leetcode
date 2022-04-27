@@ -1,0 +1,56 @@
+
+class Solution
+{
+    //Function to find largest rectangular area possible in a given histogram.
+    public static long getMaxArea(long hist[], long n) 
+    {
+        // your code here
+        long ngl[]=new long[(int)n];
+		long ngr[]=new long[(int)n];
+		Stack<Integer> stack=new Stack<>();
+		
+		int index=0;
+		for(int i=0;i<n;i++) {
+			if(stack.isEmpty())
+				{ngl[index++]=-1;stack.push(i);}
+			else if(hist[stack.peek()]<hist[i])
+				{ngl[index++]=stack.peek();stack.push(i);}
+			else {
+				while(!stack.isEmpty() && hist[stack.peek()]>=hist[i])
+					stack.pop();
+				if(stack.isEmpty()) {ngl[index++]=-1;stack.push(i);}
+				else {ngl[index++]=stack.peek();stack.push(i);}
+			}
+		}
+		
+		index=0;
+		stack=new Stack<>();
+		for(int i=(int)n-1;i>=0;i--) {
+			if(stack.isEmpty())
+				{ngr[index++]=n;stack.push(i);}
+			else if(hist[stack.peek()]<hist[i])
+				{ngr[index++]=stack.peek();stack.push(i);}
+			else {
+				while(!stack.isEmpty() && hist[stack.peek()]>=hist[i])
+					stack.pop();
+				if(stack.isEmpty()) {ngr[index++]=n;stack.push(i);}
+				else {ngr[index++]=stack.peek();stack.push(i);}
+			}
+		}
+		int i=0;
+		int j=(int)n-1;
+		while(i<=j) {
+			long temp=ngr[i];
+			ngr[i++]=ngr[j];
+			ngr[j--]=temp;
+		}
+		long width[]=new long[(int)n];
+		long max=Long.MIN_VALUE;
+		for(int t=0;t<(int)n;t++) {
+			width[t]=ngr[t]-ngl[t]-1;
+			max=Math.max(max, width[t]*hist[t]);
+		}
+		return max;
+    }
+        
+}
