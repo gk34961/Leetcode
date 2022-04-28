@@ -1,0 +1,71 @@
+class Solution {
+    public int maxArea(int M[][], int n, int m) {
+        
+        int max=0;
+		int temp[]=new int[m];
+		for(int i=0;i<m;i++)
+			temp[i]=M[0][i];
+		max=findHistogram(temp, m);
+		for(int i=1;i<n;i++) {
+			for(int j=0;j<m;j++) {
+				if(M[i][j]!=0)
+					temp[j]+=M[i][j];
+				else
+					temp[j]=0;
+			}
+		max=Math.max(findHistogram(temp, m),max);
+		}
+		return max;
+    }
+    
+    private static int findHistogram(int[] arr, int n) {
+		int ngl[]=new int[n];
+		int ngr[]=new int[n];
+		Stack<Integer> stack=new Stack();
+		
+		int index=0;
+		for(int i=0;i<n;i++) {
+			if(stack.isEmpty())
+				{ngl[index++]=-1;stack.push(i);}
+			else if(arr[stack.peek()]<arr[i])
+				{ngl[index++]=stack.peek();stack.push(i);}
+			else {
+				while(!stack.isEmpty() && arr[stack.peek()]>=arr[i])
+					stack.pop();
+				if(stack.isEmpty()) {ngl[index++]=-1;stack.push(i);}
+				else {ngl[index++]=stack.peek();stack.push(i);}
+			}
+		}
+		
+		index=0;
+		stack=new Stack();
+		for(int i=n-1;i>=0;i--) {
+			if(stack.isEmpty())
+				{ngr[index++]=n;stack.push(i);}
+			else if(arr[stack.peek()]<arr[i])
+				{ngr[index++]=stack.peek();stack.push(i);}
+			else {
+				while(!stack.isEmpty() && arr[stack.peek()]>=arr[i])
+					stack.pop();
+				if(stack.isEmpty()) {ngr[index++]=n;stack.push(i);}
+				else {ngr[index++]=stack.peek();stack.push(i);}
+			}
+		}
+		int i=0;
+		int j=n-1;
+		while(i<=j) {
+			int temp=ngr[i];
+			ngr[i++]=ngr[j];
+			ngr[j--]=temp;
+		}
+		int width[]=new int[n];
+		int max=Integer.MIN_VALUE;
+		for(int t=0;t<n;t++) {
+			width[t]=ngr[t]-ngl[t]-1;
+			max=Math.max(max, width[t]*arr[t]);
+		}
+	
+		return max;
+	}
+
+}
