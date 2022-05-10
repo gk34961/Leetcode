@@ -21,3 +21,18 @@ class Solution
     }
 }
    
+==========================================================================================================================================================================
+   class Solution
+{
+   public int josephus(int n, int k)
+    {
+        //Your code here
+    int res=0;
+      for(int i=1;i<=n;i++){
+         res=(res+k)%i;
+         System.out.println("i=="+i);
+         System.out.println("res=="+res);
+      }
+      return res+1;
+    }
+}
