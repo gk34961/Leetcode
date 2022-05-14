@@ -13,13 +13,19 @@ class Solution
             if(slow==fast)
                 break;
         }
-        if(slow==fast){
+        //System.out.println(slow.data);
+        
+        if(slow==head){
+            while(fast.next!=slow)
+                fast=fast.next;
+            fast.next=null;
+        }else if(slow==fast){
             slow=head;
-                while(slow.next!=fast.next){
-                    slow=slow.next;
-                    fast=fast.next;
-                }
-                slow.next=null;
-        }
+            while(slow.next!=fast.next){
+                slow=slow.next;
+                fast=fast.next;
+            }
+            fast.next=null;
+        }    
     }
 }
