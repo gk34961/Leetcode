@@ -42,3 +42,35 @@ class Solution
         return true;
     }
 }
+
+
+//DFS  SOLUTION
+class Solution {
+    public boolean isBipartite(int[][] graph) {
+        int n=graph.length;
+        int color[]=new int[n];
+        for(int i=0;i<n;i++) color[i]=-1;
+        
+        for(int i=0;i<n;i++){
+            if(color[i]==-1){
+                if(dfs(color,graph,i)==false) return false;
+            }
+        }
+        return true;
+    }
+    
+    boolean dfs( int color[],int[][] graph,int node){
+        for(int n:graph[node]){
+            if(color[n]==-1){
+                color[n]=1-color[node];
+                if(!dfs(color,graph,n)){
+                    return false;
+                }
+            }
+            else if(color[n]==color[node]){
+                return false;
+            }
+        }
+        return true;
+    }
+}
