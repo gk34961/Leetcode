@@ -45,3 +45,44 @@ return mat;
         return true;
     }
 }
+
+=======================================================================================================================================================================
+class Solution {
+    public int[][] updateMatrix(int[][] mat) {
+        
+        Queue<int[]> q=new LinkedList<>();
+        for(int i=0;i<mat.length;i++){
+            for(int j=0;j<mat[0].length;j++){
+                if(mat[i][j]==0)
+                    q.offer(new int[]{i,j});
+                else
+                   mat[i][j] =Integer.MAX_VALUE;
+            }
+        }
+    
+        int direction[][]={{-1,0},{0,-1},{1,0},{0,1}};
+        
+       
+        while(!q.isEmpty()){
+            int pos[]=q.poll();
+            int x=pos[0];
+            int y=pos[1];
+            
+            for(int dir[]:direction){
+                int newx=dir[0]+x;
+                int newy=dir[1]+y;
+                
+                if(isValid(x,y,newx,newy,mat)){
+                    q.offer(new int[]{newx,newy});
+                    mat[newx][newy] = mat[x][y] + 1;
+                }
+            }
+        }
+        return mat;
+    }
+    
+    boolean isValid(int ox,int oy,int x,int y,int[][] mat){
+        if(x<0||y<0||x>=mat.length||y>=mat[0].length||mat[x][y]<=mat[ox][oy]) return false;
+        else return true;
+    }
+}
